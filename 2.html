@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="3.html">3page</a>
+    <div id="article">
+        <h1 id="header">Home Page</h1>
+        <p>Page Text</p>
+    </div>
+
+    <p>Text 1</p>
+    <p>Text 2</p>
+    <a id="home" class="link" href="index.html">Home</a>
+    <script>
+        const article = document.getElementById("article");
+        console.log(article.nodeName);
+        console.log(article.nodeType)
+
+        const header = document.createElement("h1");
+        const headerText = document.createTextNode("Hello World");
+        header.appendChild(headerText);
+        document.body.appendChild(header)
+        console.log(header);
+
+        const firstP = document.body.firstElementChild;
+        // добавляем элемент h1 перед параграфом firstP
+        document.body.insertBefore(header, firstP);
+
+        const element = document.getElementById("home");
+        // получаем атрибуты элемента
+        console.log(element.getAttribute("id"));    // home
+        console.log(element.getAttribute("class")); // link
+        console.log(element.getAttribute("href"));
+
+        // устанавливаем атрибут href
+        element.setAttribute("href", "https://metanit.com");
+        // устанавливаем атрибут style
+        element.setAttribute("style", "color:navy;");
+
+        console.log(element.getAttribute("style"));
+        console.log(element.getAttribute("href"));
+
+        // удаляем атрибут style
+        element.removeAttribute("style");
+
+        console.log(element.getAttribute("style"));
+
+        const header2 = document.getElementById("header");
+        // получаем значение свойства color
+        console.log(header2.style.color);    // пустая строка
+        // изменяем значение свойства color
+        header2.style.color = "navy";
+        header.style.fontFamily = "Verdana";
+        // повторно получаем значение свойства color
+        console.log(header2.style.color);
+        console.log(header2.style.fontFamily);
+    </script>
+</body>
+
+</html>

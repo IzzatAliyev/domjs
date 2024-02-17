@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="openBrowser()">OpenBrowser</button>
+    <button onclick="moveWindow()">MoveBrowser</button>
+    <form id="registerForm" name="registerForm">
+        <p>
+            <label for="username">Username:</label><br>
+            <input id="username" name="username" maxlength="20" minlength="3" required>
+        </p>
+        <button type="submit" id="submit" name="submit">Register</button>
+    </form>
+    <input id="key" name="key" />
+    <button id="btn">Click</button>
+    <div>
+        <p>— Ах, виноват-с, Петр Николаич! Я буду тихо, — сказал секретарь и продолжал полушёпотом: — Ну-с, а закусить,
+            душа моя Григорий Саввич, тоже нужно умеючи. Надо знать, чем закусывать. Самая лучшая закуска, ежели желаете
+            знать, селедка. Съели вы ее кусочек с лучком и с горчичным соусом, сейчас же, благодетель мой, пока еще
+            чувствуете в животе искры, кушайте икру саму по себе или, ежели желаете, с лимончиком, потом простой редьки
+            с солью, потом опять селедки, но всего лучше, благодетель, рыжики соленые, ежели их изрезать мелко, как
+            икру, и, понимаете ли, с луком, с прованским маслом... объедение! Но налимья печенка — это трагедия!</p>
+        <p>— М-да... — согласился почетный мировой, жмуря глаза. — Для закуски хороши также, того... душоные белые
+            грибы...</p>
+    </div>
+    <script>
+        const registerForm = document.registerForm;
+        const submit = registerForm.submit;
+        submit.addEventListener("click", validate);
+
+        function validate() {
+            if (registerForm.username.validity.valueMissing) {
+                registerForm.username.setCustomValidity("Необходимо ввести имя пользователя");
+            }
+            if (registerForm.username.validity.tooLong) {
+                registerForm.username.setCustomValidity("Имя пользователя не должно превышать 20 символов");
+            }
+            if (registerForm.username.validity.tooShort) {
+                registerForm.username.setCustomValidity("Имя пользователя не должно быть меньше 3 символов");
+            }
+        }
+        var alert = function (message) {
+
+            console.log("Сообщение: ", message);
+        };
+        window.alert("Привет мир!");
+
+        console.log(window.innerHeight);
+        console.log(window.innerWidth);
+        console.log(window.screenX);
+        console.log(window.screenY);
+
+        console.log(screen.availTop);       // 25
+        console.log(screen.availLeft);      // 0
+        console.log(screen.availHeight);    // 695
+        console.log(screen.availWidth);     // 1280
+        console.log(screen.width);          // 1280
+        console.log(screen.height);         // 800
+        console.log(screen.pixelDepth);     // 24
+        console.log(screen.colorDepth);
+
+        // const btn = document.getElementById("btn");
+
+        // btn.addEventListener("click", () => {
+        //     const result = confirm("Завершить выполнение программы?");
+        //     if (result === true)
+        //         console.log("Работа программы завершена");
+        //     else
+        //         console.log("Программа продолжает работать");
+        // });
+
+        // const btn = document.getElementById("btn");
+        // btn.addEventListener("click", () => {
+        //     const name = prompt("Введите свое имя:");
+        //     console.log("Ваше имя: ", name)
+        // });
+
+        // const btn = document.getElementById("btn");
+        // const keyField = document.getElementById("key");
+        // btn.addEventListener("click", () => {
+
+        //     const result = find(keyField.value);    // ищем введенное в поле слово
+        //     console.log(result);
+        // });
+
+        const btn = document.getElementById("btn");
+        const keyField = document.getElementById("key");
+        btn.addEventListener("click", () => {
+            print();    // выводим текущую страницу на печать
+        });
+        let wind = null
+        // сдвигаем окно
+        function moveWindow() {
+            wind.moveTo(500, 400);
+        }
+
+        function openBrowser() {
+            window.scrollTo(100, 200);
+            wind = window.open('http://google.com', '_blank', 'popup=yes,width=500,height=500,left=500,top=200')
+            setTimeout(() => {
+                wind?.close()
+                wind = null;
+            }, 2000);
+        }
+    </script>
+</body>
+
+</html>

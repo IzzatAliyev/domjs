@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base href="index.html">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>domjs</title>
+    <style>
+        a {
+            text-decoration: none;
+            color: green;
+        }
+
+        a:hover {
+            color: black
+        }
+    </style>
+</head>
+
+<body>
+    <a href="2.html">2page</a>
+    <h2>Page Header</h2>
+    <div>
+        <img src="./static/image.png" alt="image" height="50px" width="50px">
+        <h3>Block Header</h3>
+        <p>Text</p>
+        <p>Text2</p>
+        <a href="http://www.google.com">google</a>
+        <a href="http://www.apple.com">apple</a>
+        <h1 id="header">Home Page</h1>
+        <p class="contacts">Email: supercorp@zmail.com</p>
+        <p class="contacts">Phone: +1-234-567-8901</p>
+    </div>
+
+    <div>
+        <form>
+            <p>Language:</p>
+            <input type="radio" name="lang" value="Java">
+            <label>Java</label>
+            <br>
+            <input type="radio" name="lang" value="JavaScript" checked>
+            <label>JavaScript</label>
+            <br>
+            <input type="radio" name="lang" value="PHP">
+            <label>PHP</label>
+            <br>
+        </form>
+    </div>
+
+    <br>
+    <div>
+        <div class="annotation">
+            <p>Аннотация статьи</p>
+        </div>
+        <div class="text">
+            <p>Первый абзац</p>
+            <p>Второй абзац</p>
+        </div>
+    </div>
+    <script>
+        console.log(document.title);
+        console.log(document.lastModified);
+        console.log('domain= ' + document.domain);
+        console.log(document.URL);
+        const images = document.images
+        console.log(images)
+        console.log(images[0])
+        setTimeout(() => {
+            images[0].src = './static/image2.png'
+        }, 5000);
+
+        const links = document.links
+        for (link of links) {
+            console.log(`Href: "${link.href}" Text: "${link.innerText}"`);
+        }
+        console.log(links)
+
+        const headerElement = document.getElementById("header");
+        console.log("Text: ", headerElement.innerText);
+
+        const paragraphs = document.getElementsByTagName("p");
+
+        for (p of paragraphs) {
+            console.log(p.innerText);
+        }
+
+        const paragr = document.getElementsByTagName("p")[0];
+        console.log(paragr.innerText);
+
+        const paragraphs2 = document.getElementsByTagName("p");
+        for (let i = 0; i < paragraphs2.length; i++) {
+            console.log(paragraphs2[i].innerText);
+        }
+
+        const contacts = document.getElementsByClassName("contacts");
+
+        for (contact of contacts) {
+            console.log(contact.innerText);
+        }
+
+        const langs = document.getElementsByName("lang");
+        for (lang of langs) {
+            console.log(lang.value);    // получаем значение атрибута value
+        }
+
+        const elem = document.querySelector(".annotation p");
+        console.log(elem.innerText);
+
+        const elems = document.querySelectorAll(".text p");
+        for (elem1 of elems) {
+            console.log(elem1.innerText);
+        }
+    </script>
+</body>
+
+</html>

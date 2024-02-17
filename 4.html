@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="5.html">5page</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Book</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>John Doe</td>
+                <td>Lookup.pdf</td>
+                <td>304</td>
+            </tr>
+            <tr>
+                <td>John Doe</td>
+                <td>Lookup.pdf</td>
+                <td>304</td>
+            </tr>
+            <tr>
+                <td>John Doe</td>
+                <td>Lookup.pdf</td>
+                <td>304</td>
+            </tr>
+            <tr>
+                <td>John Doe</td>
+                <td>Lookup.pdf</td>
+                <td>304</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Book</th>
+                <th>Price</th>
+            </tr>
+        </tfoot>
+    </table>
+    <br>
+    <form id="search" name="search" action="https://google.com/search" method="get">
+        <input type="text" id="key" name="q" />
+        <input type="submit" id="send" name="send" />
+        <input type="reset" value="Очистить" />
+    </form>
+    <script>
+        const form = document.getElementById("search");
+        console.log(form.elements);     // HTMLFormControlsCollection(2) [input, input, q: input, send: input]
+        console.log(form.length);       // 2
+        console.log(form.name);         // search
+        console.log(form.action);       // https://google.com/search
+        console.log(form.method);
+        const form1 = document.forms["search"];
+        form1.reset()     // reset can be added to func
+
+        function sendForm(e) {
+
+            // получаем значение поля key
+            const keyBox = document.search.key;
+            const val = keyBox.value;
+            if (val.length < 3) {
+                alert("Недопустимая длина строки");
+                e.preventDefault();
+            }
+            else
+                alert("Отправка разрешена");
+        }
+
+        const sendButton = document.search.send;
+        sendButton.addEventListener("click", sendForm);
+    </script>
+</body>
+
+</html>

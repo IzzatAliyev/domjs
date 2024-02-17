@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #blueRect {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="4.html">4html</a>
+    <div id="rect" onclick="btn_click($event)" style="width:50px;height:50px;background-color:blue;"></div>
+    <div id="rect" onclick="btn_click()" style="margin-top: 10px; width:50px;height:50px;background-color:red;"></div>
+    <button id="btn">Click Me</button>
+    <a id="link" href="https://google.com">google</a>
+
+    <div id="redRect">hello</div>
+    <div id="blueRect"></div>
+    <a id="link2" href="https://google.com">google</a>
+    <script>
+        let clicks = 0;
+        function btn_click(text) {
+            console.log("Clicked", ++clicks);
+            console.log(text);
+        }
+
+        const btn = document.getElementById("btn");
+        // прикрепляем обработчик события "click"
+        btn.addEventListener("click", btn_click);
+
+        function linkHandler(e) {
+            console.log("Link has been clicked");
+            e.preventDefault();     // останавливаем переход по ссылке
+        }
+        const link = document.getElementById("link");
+        link.addEventListener("click", linkHandler);
+
+        const redRect = document.getElementById("redRect");
+        redRect.addEventListener("click", () => console.log("Событие на redRect"));
+
+        function setColor(e) {
+            if (e.type === "mouseover")
+                e.target.style.backgroundColor = "red";
+            else if (e.type === "mouseout")
+                e.target.style.backgroundColor = "blue";
+        }
+
+        function handleClick(e) {
+            console.log("screenX: " + e.screenX);
+            console.log("screenY: " + e.screenY);
+            console.log("clientX: " + e.clientX);
+            console.log("clientY: " + e.clientY);
+            console.log(e)
+        }
+
+        const blueRect = document.getElementById("blueRect");
+        blueRect.addEventListener("mouseover", setColor);
+        blueRect.addEventListener("mouseout", setColor);
+        blueRect.addEventListener("click", handleClick);
+
+        const blueRectStyle = window.getComputedStyle(blueRect);
+        // устанавливаем обработчик нажатия клавиши
+        window.addEventListener("keydown", moveRect);
+
+        function moveRect(e) {
+            const left = parseInt(blueRectStyle.marginLeft); //смещение от левого края
+            const top = parseInt(blueRectStyle.marginTop);  // смещения от левой границы
+
+            switch (e.key) {
+
+                case "ArrowLeft":  // если нажата клавиша влево
+                    if (left > 0)
+                        blueRect.style.marginLeft = left - 10 + "px";
+                    break;
+                case "ArrowUp":   // если нажата клавиша вверх
+                    if (top > 0)
+                        blueRect.style.marginTop = top - 10 + "px";
+                    break;
+                case "ArrowRight":   // если нажата клавиша вправо
+                    if (left < document.documentElement.clientWidth - 100)
+                        blueRect.style.marginLeft = left + 10 + "px";
+                    break;
+                case "ArrowDown":   // если нажата клавиша вниз
+                    if (top < document.documentElement.clientHeight - 100)
+                        blueRect.style.marginTop = top + 10 + "px";
+                    break;
+            }
+        }
+
+        const link2 = document.getElementById("link2");
+
+        link2.addEventListener("click", (e) => {
+            console.log("Link has been clicked");
+            e.preventDefault();     // предупреждаем переход
+        });
+
+        const event = new MouseEvent("click", { cancelable: true });
+        link2.dispatchEvent(event);
+    </script>
+</body>
+
+</html>
